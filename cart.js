@@ -222,6 +222,23 @@ const buttonTag = document.createElement('button');
 buttonTag.textContent = 'Place Order';
 buttonTag.disabled = true; // Disable by default, will enable if cart has items
 buttonTag.onclick = function() {
+
+    const cartItems = getCartItems();
+    const contentIds = cartItems.map(item => item.id);
+    const totalValue = cartItems.reduce((sum, item) => sum + (Number(item.price) * item.quantity), 0);
+    let contents = cartItems.map(item => ({
+        id: item.id,
+        quantity: item.quantity
+    }))
+
+    fbq('track', 'Purchase', {
+        contents: contents,
+        content_type: 'product',
+        value: totalValue,
+        currency: 'USD'
+    });
+
+    // Redirect to order placed page
     window.location.href = '/orderPlaced.html';
 };
 

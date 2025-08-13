@@ -192,6 +192,17 @@ function dynamicClothingSection(ob) {
         document.body.removeChild(confirmationMsg);
       }, 500);
     }, 2000);
+
+
+    fbq('track', 'AddToCart', {
+      content_name: ob.title,
+      content_category: ob.category,
+      content_ids: [ob.id],
+      content_type: 'product',
+      value: ob.price,
+      currency: 'USD'
+    });
+
   };
 
   // Assemble the product card
