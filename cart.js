@@ -233,6 +233,7 @@ buttonTag.onclick = function() {
 
     fbq('track', 'Purchase', {
         contents: contents,
+        content_ids: contentIds,
         content_type: 'product',
         value: totalValue,
         currency: 'USD'
